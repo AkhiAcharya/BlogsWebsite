@@ -1,0 +1,79 @@
+.container{
+    background-color:#19001E;
+    padding-top: 10%;
+    height: 100vh
+}
+
+.authCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(61,11,62,0.6);
+    padding: 20px;
+    max-width: 400px;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.logoArea {
+    margin-bottom: 20px;
+}
+
+.authButton {
+    background-color: #0070f3;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px 0;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.authButton:hover {
+    background-color: #0056b3;
+}
+
+.loginForm {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: auto;
+    margin-top: 2%;
+}
+
+.loginInput {
+    padding: 10px;
+    margin: 10px 0;
+    border: 3px solid #483D8B;
+    background-color: #19001E;
+    border-radius: 10px;
+    color: #FFFFFF;
+}
+
+.loginButton {
+    background-color: #0070f3;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px 0;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.loginButton:hover {
+    background-color: #0056b3;
+}
+
+.signUpLink {
+    color: #0070f3;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.message {
+    color: #FFFFFF;
+
+}

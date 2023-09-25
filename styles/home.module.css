@@ -1,0 +1,55 @@
+.container {
+  font-family: 'Arial', sans-serif;
+  background-color:#19001E;
+  padding: 0 10%;
+  min-height: 100vh;
+}
+
+.section {
+  margin-bottom: 3em;
+}
+
+/* Welcome Section Styles */
+.welcomeSection {
+  text-align: center;
+  padding: 5em 2em 0 0;
+}
+
+.title {
+  font-size: 4em;
+  color: #FFFFFF;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+.subtitle {
+  color: #FFFFFF;
+  font-weight: bold;
+  font-size: 2em;
+}
+
+/* Footer Styles */
+/* .footer {
+  background-color: #333;
+  padding: 1em 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.footerText {
+  color: #fff;
+  text-align: center;
+} */
+
+
+/* text color styles */
+
+.mainText {
+    color: #B19CD9; /* You can replace this with your desired color */
+}
+
+.secondaryText {
+    color: #1ABC9C
+}

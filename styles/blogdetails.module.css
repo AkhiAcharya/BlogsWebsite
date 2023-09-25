@@ -1,0 +1,155 @@
+.all {
+    background-color:#19001E;
+    padding: 4rem 0;
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 20px;
+    background-color:#19001E;
+    border-radius: 10px;
+    box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1), 0px 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+
+.blogTitle {
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 35px;
+    margin: 3rem 0;
+}
+
+.blogContent {
+    margin-bottom: 50px;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+.author {
+    font-size: 18px;
+    color: #67B7A6;
+    margin-bottom: 3rem;
+}
+
+.deleteButton {
+    background-color: #e53935;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.deleteButton:hover {
+    background-color: #0056b3;
+}
+
+
+
+.comment {
+    background-color: #19001E;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 10px;
+    box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1), 0px 4px 6px -2px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    border: 3px solid #483D8B;;
+}
+
+.commentAuthor {
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 1.25rem;
+    margin-bottom: 5px;
+}
+
+.commentBody {
+    color: #FFFFFF;
+}
+
+.title, .commentsTitle {
+    font-size: 40px; 
+    color: #FFFFFF;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center; 
+    text-transform: uppercase; 
+    letter-spacing: 1px; 
+    border-bottom: 2px solid #0070f3; 
+    padding-bottom: 10px; 
+}
+
+.commentsTitle {
+    margin-top: 4rem;
+}
+
+.commentForm {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+    margin-top: 4rem;
+  }
+  
+  .commentForm input,
+  .commentForm textarea {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border: 3px solid #483D8B;
+    border-radius: 10px;
+    transition: border 0.2s ease;
+    background-color: #19001E;
+    color: #FFFFFF;
+  }
+
+  .commentForm input:focus, .commentForm textarea:focus {
+    outline: none;
+    border: 3px solid #0070f3;
+}
+  
+  .commentForm button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #0070f3;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .commentForm button:hover {
+    background-color: #0056b3;
+  }
+
+  .loginPrompt {
+    background-color: rgba(61,11,62,0.5);;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 30px 0px 0px 0px;
+    box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1), 0px 4px 6px -2px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.loginButton {
+    background-color: #0070f3;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-top: 10px;
+}
+
+.loginButton:hover {
+    background-color: #0056b3;
+}
+
+.loginMessage {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 10px;
+}

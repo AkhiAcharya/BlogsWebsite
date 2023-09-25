@@ -2,19 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
 
 body {
   color: rgb(var(--foreground-rgb));
@@ -24,4 +11,19 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+} 
+
+input ,textarea{
+  border: 2px solid black;
+  margin: 3px;
+  border-radius: 10px;
+  padding: 3px;
+}
+
+.create button {
+  display:flex;
+  background-color: lightblue;
+  padding: 5px;
+  margin: 2px;
+  border-radius: 10px;
 }

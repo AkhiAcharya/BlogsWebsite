@@ -1,118 +1,126 @@
 import Image from 'next/image'
-import { Inter } from 'next/font/google'
+import { addBlogs, getBlogposts, getDocumentById, myfunction } from '@/firebase'
+import { useEffect, useState} from 'react';
+import styles from '@/styles/home.module.css'
+import Head from 'next/head';
+import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
 
-const inter = Inter({ subsets: ['latin'] })
+function Carousel({ data }) {
+  const [slides, setSlides] = useState([]);
+  const [titles, setTitles] = useState([]);
+  const [links, setLinks] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const slideData = [];
+    const titleData = [];
+    const linkData = [];
+
+    // use data to set slideData, titleData, and linkData arrays
+    if (data !== undefined) {
+      for (let i = 0; i < data.length; i++) {
+        slideData.push({ url: data[i].Image });
+        titleData.push({ title: data[i].Title });
+        linkData.push({ link: data[i].Link });
+      }
+
+      setSlides(slideData);
+      setTitles(titleData);
+      setLinks(linkData);
+    }
+  }, [data]);
+
+  const prevSlide = () => {
+    const isFirstSlide = currentIndex === 0;
+    const newIndex = isFirstSlide ? slides.length - 1 : currentIndex - 1;
+    setCurrentIndex(newIndex);
+  };
+
+  const nextSlide = () => {
+    const isLastSlide = currentIndex === slides.length - 1;
+    const newIndex = isLastSlide ? 0 : currentIndex + 1;
+    setCurrentIndex(newIndex);
+  };
+
+  const goToSlide = (slideIndex) => {
+    setCurrentIndex(slideIndex);
+  };
+
+  if (slides.length === 0) {
+    return null;
+  }
+
+  return (
+    <div className="relative mx-auto lg:w-3/4">
+      <a href={links[currentIndex].link !== '' ? links[currentIndex].link : ''} target="_blank" rel="noreferrer">
+        <div
+          style={{
+            backgroundImage: `url(${slides[currentIndex].url})`,
+          }}
+          className="h-[400px] rounded-2xl bg-center bg-cover duration-500 mx-4 mt-6 flex items-end justify-center lg:min-h-[600px]"
+        >
+          <p className="text-white text-center  rounded-b-2xl py-2 w-full font-bold text-2xl">
+            {titles[currentIndex].title}
+          </p>
+        </div>
+      </a>
+      <div className="group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer hover:bg-slate-500 transition ease-out">
+        <BsChevronCompactLeft onClick={prevSlide} size={30} />
+      </div>
+      <div className="group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] right-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer hover:bg-slate-500 transition ease-out">
+        <BsChevronCompactRight onClick={nextSlide} size={30} />
+      </div>
+      <div className="flex top-4 justify-center py-2">
+        {slides.map((slide, slideIndex) => (
+          <div
+            key={slideIndex}
+            onClick={() => goToSlide(slideIndex)}
+            className="text-2xl cursor-pointer"
+          >
+            {/* <RxDotFilled /> */}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+
 
 export default function Home() {
+  const carouselData = [
+    {
+      Image: '/pexels-francesco-ungaro-1525041.jpg',
+      Title: "Escape into nature's embrace",
+    },
+    {
+      Image: '/pexels-andrea-piacquadio-3865557.jpg',
+      Title: 'Unity in Diversity: Stories that Bind Us.',
+    },
+    {
+      Image: '/pexels-rachel-claire-4997819.jpg',
+      Title: 'Where Ideas Take Flight and Dreams are Built.',
+    }
+  ];
+
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">pages/index.js</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
+    <>
+      <Head>
+        <title>BlogBurst</title>
+      </Head>
+      <div className={styles.container}>
+
+      <div className={`${styles.section} ${styles.welcomeSection}`}>
+        <h1 className={styles.title}>Welcome to <span className={styles.mainText}>BlogBurst</span>!</h1>
+        <p className={styles.subtitle}>Dive into the world of <span className={styles.secondaryText}>stories</span>, <span className={styles.secondaryText}>experiences</span>, and <span className={styles.secondaryText}>ideas</span>.</p>
       </div>
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700/10 after:dark:from-sky-900 after:dark:via-[#0141ff]/40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+      <Carousel data={carouselData}  />
 
-      <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Discover and deploy boilerplate example Next.js&nbsp;projects.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+          {/* <footer className={`${styles.section} ${styles.footer}`}>
+              <p className={styles.footerText}>BlogBurst - Where your thoughts come alive.</p>
+          </footer> */}
+    </div>
+    </>
+);
 }

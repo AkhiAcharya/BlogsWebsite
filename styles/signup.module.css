@@ -1,0 +1,70 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color:#19001E;
+}
+
+.card {
+    background-color: rgba(61,11,62,0.6);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1), 0px 4px 6px -2px rgba(0, 0, 0, 0.05);
+    text-align: center;
+}
+
+.title {
+    font-size: 2em;
+    color: #FFFFFF;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.signupForm {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.signupForm input {
+    padding: 10px;
+    margin: 10px 0;
+    border: 3px solid #483D8B;
+    border-radius: 10px;
+    background-color: #19001E;
+    color: white;
+
+}
+
+.signupForm button {
+    background-color: #0070f3;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px 0;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.signupForm button:hover {
+    background-color: #0056b3;
+}
+
+.logInLink {
+    color: #0070f3;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.writing {
+    color: #FFFFFF;
+
+}
+
+.message {
+    font-size: 1em;
+    color: #0070f3;
+    margin-bottom: 10px;
+}
