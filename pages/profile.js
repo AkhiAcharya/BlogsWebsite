@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Link from "next/link";
 import Head from "next/head";
+import url from "@/url";
 
 export default function profile({data}) {
     const { currentUser, setCurrentUser } = useContext(AuthContext);
@@ -63,7 +64,7 @@ export default function profile({data}) {
 }
 
 export async function getServerSideProps() { 
-    const response = await fetch('http://localhost:3000/api/get/getallblogs');
+    const response = await fetch(url + '/api/get/getallblogs');
     const { blogposts } = await response.json();
     return {
         props: {

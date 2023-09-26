@@ -19,4 +19,4 @@ export default async function handler(req, res) {
         // Handle other HTTP methods
         res.status(405).end(`Method ${method} Not Allowed`);
     }
-}
+}      

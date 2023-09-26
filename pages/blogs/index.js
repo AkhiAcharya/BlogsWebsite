@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Head from "next/head";
 import { useState } from "react";
+import url from "@/url";
 
 export default function Blogs({ data }) {
 
@@ -54,7 +55,7 @@ export default function Blogs({ data }) {
 }
 
 export async function getServerSideProps() { 
-    const response = await fetch('http://localhost:3000/api/get/getallblogs');
+    const response = await fetch(url + '/api/get/getallblogs');
     const { blogposts } = await response.json();
     return {
         props: {

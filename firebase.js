@@ -24,6 +24,7 @@ import {
   };
 
 
+
 const app = initializeApp(firebaseConfig)
 const db = getFirestore(app)
 export const auth = getAuth()
@@ -105,11 +106,3 @@ export const UserSignout = async() => {
         })
 }
 
-export const filterBlogs = async(title) => {
-    const q = query(colRef, where('title', '==', title));
-
-    const querySnapshot = await getDocs(q);
-    const filteredBlogs = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-
-    return filteredBlogs;
-}
