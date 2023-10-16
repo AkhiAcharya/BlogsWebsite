@@ -9,27 +9,27 @@ import Link from "next/link";
 import url from "@/url";
 
 
-export async function getStaticPaths() {
-    const response = await fetch(url+'/api/get/getallblogs');
+// export async function getStaticPaths() {
+//     const response = await fetch(url+'/api/get/getallblogs');
 
-    const { blogposts } = await response.json().catch((error) => {
-        console.log("There was an error");
-    });
+//     const { blogposts } = await response.json().catch((error) => {
+//         console.log("There was an error");
+//     });
 
-    const allPaths = blogposts.map((path) => {
-        return {
-          params: {
-            id: path.id.toString()
-          },
-        };
-      });
-    return {
-        paths: allPaths,
-        fallback: false,
-    };
-};
+//     const allPaths = blogposts.map((path) => {
+//         return {
+//           params: {
+//             id: path.id.toString()
+//           },
+//         };
+//       });
+//     return {
+//         paths: allPaths,
+//         fallback: false,
+//     };
+// };
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
     const id = context.params.id;
     let BlogData;
     let BlogComments;
