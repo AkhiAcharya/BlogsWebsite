@@ -10,7 +10,7 @@ import url from "@/url";
 
 
 export async function getStaticPaths() {
-    const response = await fetch('http://localhost:3000/api/get/getallblogs');
+    const response = await fetch(url+'/api/get/getallblogs');
 
     const { blogposts } = await response.json();
     const allPaths = blogposts.map((path) => {
@@ -35,7 +35,7 @@ export async function getStaticProps(context) {
     const { blog } = await response.json();
     BlogData = blog;
 
-    const responseComments = await fetch(url + `/get/getcomments?id=${id}`);
+    const responseComments = await fetch(url + `/api/get/getcomments?id=${id}`);
     const { comments } = await responseComments.json();
     BlogComments = comments;
 
