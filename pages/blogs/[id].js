@@ -12,7 +12,10 @@ import url from "@/url";
 export async function getStaticPaths() {
     const response = await fetch(url+'/api/get/getallblogs');
 
-    const { blogposts } = await response.json();
+    const { blogposts } = await response.json().catch((error) => {
+        console.log("There was an error");
+    });
+
     const allPaths = blogposts.map((path) => {
         return {
           params: {
